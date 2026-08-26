@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CoreLogic {
+
+	String password = "jimbo.james";
+	String API_KEY = "abc123youandme";
 	
 	protected static void implementLogic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("In play the game doGet");
