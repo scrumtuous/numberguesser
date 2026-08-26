@@ -1,39 +1,14 @@
-# ============================================================================
-# docker-compose.yml - training/teaching example
-# ============================================================================
-# A single Dockerfile can only describe one container. To demonstrate how
-# real-world apps are usually run alongside supporting services (a cache,
-# a database, a message queue, etc.), this Compose file runs the Number
-# Guesser web app next to a Redis "sidecar" container.
-#
-# NOTE: the Number Guesser servlet code does NOT actually talk to Redis
-# today - it's wired up here purely to demonstrate the *pattern* of
-# composing an app with a cache. In a real project you might use a cache
-# like this for things such as leaderboard scores, session data, or rate
-# limiting guesses. Hooking that up for real would require app code changes,
-# which is outside the scope of this exercise.
-#
-# Try it out:
-#   docker compose up --build
-#   -> app:   http://localhost:8088/numberguesser/
-#   -> cache: redis://localhost:6379
-# ============================================================================
+
 services:
   numberguesser:
     build: .
     image: numberguesser:local
     ports:
-      # Host port 8088 -> container port 8080. The container still listens on
-      # 8080 internally (that's Tomcat's default and what HEALTHCHECK in the
-      # Dockerfile checks) - only the host-facing port changes here, since
-      # 8080 was already taken by another program on the host machine.
-      - "8088:8080"
+      - "8066:8080"
     depends_on:
       cache:
         condition: service_healthy
     environment:
-      # Not read by the app yet - shown here to illustrate how you'd point
-      # an app at its cache sidecar via environment variables.
       CACHE_HOST: cache
       CACHE_PORT: 6379
 
