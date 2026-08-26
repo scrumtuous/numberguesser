@@ -1,4 +1,4 @@
-package com.mcnz.servlet
+package com.mcnz.servlet;
 
 import java.io.IOException;
 
