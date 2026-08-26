@@ -7,7 +7,7 @@ public class NumberGuesserTest {
 	
 	@Test
 	public void testGetWebpage() {
-		Assert.assertTrue(true);
+		Assert.assertTrue(false);
 	}
 	@Test
 	public void testGetRandomNumber() {
