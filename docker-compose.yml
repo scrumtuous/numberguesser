@@ -1,0 +1,23 @@
+
+services:
+  numberguesser:
+    build: .
+    image: numberguesser:local
+    ports:
+      - "8066:8080"
+    depends_on:
+      cache:
+        condition: service_healthy
+    environment:
+      CACHE_HOST: cache
+      CACHE_PORT: 6379
+
+  cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
